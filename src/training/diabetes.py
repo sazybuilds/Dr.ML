@@ -95,6 +95,7 @@ def train_diabetes_model():
 
         model = SVC(
             random_state=RANDOM_STATE,
+            probability=True,
             **model_params,
         )
 
