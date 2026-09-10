@@ -1,0 +1,33 @@
+# Project root directory
+
+PROJECT_ROOT="absolute/path/to/project_root"
+
+# logging
+
+LOG_PATH = "${PROJECT_ROOT}\logs\app.log"
+
+#datasets
+
+DIABETES_DATASET_PATH = "${PROJECT_ROOT}\dataset\diabetes.csv"
+
+HEART_DISEASE_DATASET_PATH = "${PROJECT_ROOT}\dataset\heart.csv"
+
+#models
+
+DIABETES_MODEL_PATH = "${PROJECT_ROOT}\model_dir\diabetes_prediction_pipeline.joblib"
+HEART_DISEASE_MODEL_PATH = "${PROJECT_ROOT}\model_dir\heart_disease_prediction_pipeline.joblib"
+
+
+#target columns
+DIABETES_TARGET_COL="Outcome"
+HEART_DISEASE_TARGET_COL="target"
+
+#hyperparameters config file path
+HYPER_PARAMS_YAML_PATH = "${PROJECT_ROOT}\src\training\config\best_hyperparameters.yaml"
+
+TEST_SIZE=0.15
+RANDOM_STATE=42
+
+#API_URL
+API_URL="http://127.0.0.1:8000/api/predict"
+
