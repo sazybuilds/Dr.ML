@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. ML - Production Interface</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="split-layout">
+        
+        <!-- Left Side: Black Background -->
+        <section class="left-panel">
+            <div class="panel-content">
+                <div class="brand">
+                    <span class="icon">🏥</span>
+                    <h1>Dr. ML</h1>
+                </div>
+                <p class="subtitle">Advanced Multi-Disease AI Prediction</p>
+                
+                <nav class="disease-selector">
+                    <button class="nav-btn active" data-target="diabetes-form">Diabetes Risk</button>
+                    <button class="nav-btn" data-target="heart-form">Heart Disease</button>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Right Side: White Background -->
+        <section class="right-panel">
+            <div class="panel-content">
+                
+                <!-- Diabetes Form -->
+                <form id="diabetes-form" class="prediction-form active-form">
+                    <h2>Diabetes Predictor</h2>
+                    <p class="form-desc">Enter patient vitals below.</p>
+                    
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label>Pregnancies</label>
+                            <input type="number" id="d-pregnancies" value="2" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Glucose</label>
+                            <input type="number" id="d-glucose" value="120" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Blood Pressure</label>
+                            <input type="number" id="d-bp" value="70" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Skin Thickness</label>
+                            <input type="number" id="d-skin" value="25" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Insulin</label>
+                            <input type="number" id="d-insulin" value="80" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>BMI</label>
+                            <input type="number" step="0.1" id="d-bmi" value="28.5" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Pedigree Function</label>
+                            <input type="number" step="0.01" id="d-dpf" value="0.45" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Age</label>
+                            <input type="number" id="d-age" value="35" min="1" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Predict Diabetes</button>
+                    <div id="diabetes-result" class="result-card hidden"></div>
+                </form>
+
+                <!-- Heart Disease Form -->
+                <form id="heart-form" class="prediction-form hidden-form">
+                    <h2>Heart Disease Predictor</h2>
+                    <p class="form-desc">Enter patient cardiological data.</p>
+                    
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label>Age</label>
+                            <input type="number" id="h-age" value="52" min="1" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Sex (1=M, 0=F)</label>
+                            <input type="number" id="h-sex" value="1" min="0" max="1" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Chest Pain (cp)</label>
+                            <input type="number" id="h-cp" value="0" min="0" max="3" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Resting BP</label>
+                            <input type="number" id="h-trestbps" value="125" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Cholesterol</label>
+                            <input type="number" id="h-chol" value="212" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Fasting Blood Sugar > 120 (0/1)</label>
+                            <input type="number" id="h-fbs" value="0" min="0" max="1" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Resting ECG</label>
+                            <input type="number" id="h-restecg" value="1" min="0" max="2" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Max Heart Rate</label>
+                            <input type="number" id="h-thalach" value="168" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Exercise Angina (0/1)</label>
+                            <input type="number" id="h-exang" value="0" min="0" max="1" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Oldpeak</label>
+                            <input type="number" step="0.1" id="h-oldpeak" value="1.0" min="0" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Slope</label>
+                            <input type="number" id="h-slope" value="2" min="0" max="2" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Vessels (ca)</label>
+                            <input type="number" id="h-ca" value="0" min="0" max="4" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Thal</label>
+                            <input type="number" id="h-thal" value="2" min="0" max="3" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Predict Heart Disease</button>
+                    <div id="heart-result" class="result-card hidden"></div>
+                </form>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+</body>
+</html>

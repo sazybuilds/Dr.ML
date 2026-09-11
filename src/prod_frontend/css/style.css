@@ -1,0 +1,218 @@
+/* CSS Variables for our minimal theme */
+:root {
+    --black: #0f1115;
+    --white: #ffffff;
+    --gray: #888888;
+    --light-gray: #f4f4f5;
+    --border-color: #e5e7eb;
+    --accent: #2563eb;
+    --danger: #dc2626;
+    --success: #16a34a;
+}
+
+/* Base Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--black);
+    color: var(--black);
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* 50/50 Split Layout */
+.split-layout {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.left-panel {
+    width: 50%;
+    background-color: var(--black);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10%;
+}
+
+.right-panel {
+    width: 50%;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; /* Allow scrolling if form is long */
+}
+
+/* Typography & Brand */
+.brand h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+}
+
+.brand .icon {
+    font-size: 2.5rem;
+}
+
+.subtitle {
+    color: var(--gray);
+    font-size: 1.1rem;
+    margin-bottom: 4rem;
+    font-weight: 300;
+}
+
+/* Navigation Buttons */
+.disease-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 300px;
+}
+
+.nav-btn {
+    background: transparent;
+    color: var(--gray);
+    border: 1px solid var(--gray);
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: left;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    color: var(--white);
+    border-color: var(--white);
+}
+
+.nav-btn.active {
+    background-color: var(--white);
+    color: var(--black);
+    border-color: var(--white);
+}
+
+/* Right Panel Content */
+.panel-content {
+    width: 100%;
+    max-width: 500px;
+}
+
+.prediction-form {
+    display: none;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.prediction-form.active-form {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 0.25rem;
+}
+
+.form-desc {
+    color: var(--gray);
+    margin-bottom: 2rem;
+}
+
+/* Form Grid & Inputs */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--black);
+}
+
+.input-group input {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--light-gray);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--black);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--black);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+    background-color: #333;
+}
+
+/* Results Card */
+.result-card {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.result-card.hidden {
+    display: none;
+}
+
+.result-card.success {
+    background-color: #dcfce7;
+    color: var(--success);
+}
+
+.result-card.danger {
+    background-color: #fee2e2;
+    color: var(--danger);
+}
+
+.result-card .probability {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    font-weight: 400;
+}
