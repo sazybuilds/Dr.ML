@@ -12,3 +12,4 @@ pyYAML==6.0.3
 fastapi==0.141.1
 requests==2.32.5
 streamlit==1.53.0
+uvicorn==0.52.4
