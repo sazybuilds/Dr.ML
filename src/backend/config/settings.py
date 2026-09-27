@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     log_path: str
     diabetes_model_path: str
     heart_disease_model_path: str
+    chronic_kidney_disease_model_path: str
 
     class Config:
         env_file=".env"

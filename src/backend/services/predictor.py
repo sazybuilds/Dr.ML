@@ -2,7 +2,6 @@ import logging
 from pathlib import Path
 
 import pandas as pd
-# pyrefly: ignore [missing-import]
 from joblib import load
 
 from src.backend.config.settings import Settings
@@ -13,6 +12,7 @@ settings = Settings()
 
 DIABETES_MODEL_PATH = Path(settings.diabetes_model_path)
 HEART_DISEASE_MODEL_PATH = Path(settings.heart_disease_model_path)
+CHRONIC_KIDNEY_DISEASE_MODEL_PATH = Path(settings.chronic_kidney_disease_model_path)
 LOG_PATH = Path(settings.log_path)
 
 LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -23,24 +23,26 @@ logging.basicConfig(
     handlers=[
         logging.StreamHandler(),
         logging.FileHandler(LOG_PATH)
-
     ]
 )
 
 logging.info("Loading Trained models...")
 diabetes_model = load(DIABETES_MODEL_PATH)
 heart_disease_model = load(HEART_DISEASE_MODEL_PATH)
+chronic_kidney_disease_model = load(CHRONIC_KIDNEY_DISEASE_MODEL_PATH)
 logging.info("Models Loaded Successfully")
 
 
 #common prediction function
-def predict_disease(disease: str, input_data: dict) -> None:
+def predict_disease(disease: str, input_data: dict) -> dict:
     if disease == "diabetes":
         model = diabetes_model
     elif disease == "heart_disease":
         model = heart_disease_model
+    elif disease == "chronic_kidney_disease":
+        model = chronic_kidney_disease_model
     else:
-        raise ValueError("Invalid Disease Type. Use 'diabetes' or 'heart_disease'")
+        raise ValueError("Invalid Disease Type. Use 'diabetes' or 'heart_disease' or 'chronic_kidney_disease'")
 
     X_df = pd.DataFrame([input_data])
 
@@ -87,8 +89,36 @@ def predict_disease(disease: str, input_data: dict) -> None:
 #     "thal": 3
 # }
 
+# chronic_kidney_test_data = {
+#     "age": 48.0, 
+#     "bp": 80.0, 
+#     "sg": 1.02, 
+#     "al": 1.0, 
+#     "su": 0.0, 
+#     "rbc": None, 
+#     "pc": "normal", 
+#     "pcc": "notpresent", 
+#     "ba": "notpresent", 
+#     "bgr": 121.0, 
+#     "bu": 36.0, 
+#     "sc": 1.2, 
+#     "sod": None, 
+#     "pot": None, 
+#     "hemo": 15.4, 
+#     "pcv": 44.0, 
+#     "wbcc": 7800.0, 
+#     "rbcc": 5.2, 
+#     "htn": "yes", 
+#     "dm": "yes", 
+#     "cad": "no", 
+#     "appet": "good", 
+#     "pe": "no", 
+#     "ane": "no"
+# }
+
 # print(predict_disease("diabetes", diabetes_test_data))
 # print(predict_disease("heart_disease", heart_disease_test_data))
+#print(predict_disease("chronic_kidney_disease",chronic_kidney_test_data ))
 
 
 
