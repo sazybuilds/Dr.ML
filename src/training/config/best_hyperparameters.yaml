@@ -18,3 +18,9 @@ heart_disease:
     bootstrap: true
     ccp_alpha: 0.0017
 
+
+chronic_kidney_disease:
+  model_type: Logistic_Regression
+  params:
+    max_iter: 1000
+

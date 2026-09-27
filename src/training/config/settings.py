@@ -1,9 +1,8 @@
-# pyrefly: ignore [missing-import]
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     #environment variables type check, ensure presence of all required environment variables
-    
+    project_root: str
     log_path: str
 
     diabetes_dataset_path: str
@@ -11,9 +10,13 @@ class Settings(BaseSettings):
 
     diabetes_model_path: str
     heart_disease_model_path: str
+    chronic_kidney_disease_model_path: str
+
 
     diabetes_target_col: str
     heart_disease_target_col: str
+    chronic_kidney_disease_target_col: str
+
 
     test_size: float
     random_state: int
