@@ -1,4 +1,5 @@
 # pyrefly: ignore [missing-import]
+import sys
 import logging
 import yaml
 import pandas as pd
@@ -17,8 +18,13 @@ from sklearn.metrics import (
     accuracy_score,
     classification_report,
     recall_score,
+    precision_score,
     f1_score
 )
+
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.utils.preprocessing_util import evaluate_classifier
 from src.training.config.settings import Settings
@@ -101,7 +107,7 @@ def train_model():
         logging.info("Model Evaluation..")
 
         logging.info(
-            evaluate_classifier(pipeline, X_train, y_train, X_test, y_test, "RandomForest")
+            evaluate_classifier("Random Forest", X_train, y_train, X_test, y_test, pipeline)
         )
 
         dump(pipeline, MODEL_PATH)

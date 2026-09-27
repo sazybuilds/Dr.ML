@@ -1,3 +1,4 @@
+import sys
 import logging
 import yaml
 from pathlib import Path
@@ -16,10 +17,14 @@ from sklearn.metrics import(
     accuracy_score,
     classification_report,
     recall_score,
+    precision_score,
     f1_score
 )
-
 from sklearn.svm import SVC
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
+
 from src.utils.preprocessing_util import replace_zeros_with_nan_df, evaluate_classifier
 from src.training.config.settings import Settings
 
@@ -110,7 +115,7 @@ def train_diabetes_model():
         logging.info("Model Training Completed")
         logging.info("Model Evaluation...\n")
         logging.info(
-            evaluate_classifier(pipeline, X_train, y_train, X_test, y_test, "SVC")
+            evaluate_classifier("SVC", X_train, y_train, X_test, y_test, pipeline)
         )
         dump(pipeline, MODEL_PATH)
         logging.info(f"Model saved at: {MODEL_PATH}")
