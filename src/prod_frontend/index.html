@@ -26,8 +26,9 @@
                 <p class="subtitle">Advanced Multi-Disease AI Prediction</p>
                 
                 <nav class="disease-selector">
-                    <button class="nav-btn active" data-target="diabetes-form">Diabetes Risk</button>
+                    <button class="nav-btn active" data-target="diabetes-form">Diabetes Disease</button>
                     <button class="nav-btn" data-target="heart-form">Heart Disease</button>
+                    <button class="nav-btn" data-target="chronic-form">Kidney Disease</button>
                 </nav>
             </div>
         </section>
@@ -140,6 +141,42 @@
                     </div>
                     <button type="submit" class="submit-btn">Predict Heart Disease</button>
                     <div id="heart-result" class="result-card hidden"></div>
+                </form>
+
+                <!-- Chronic Kidney Disease Form -->
+                <form id="chronic-form" class="prediction-form hidden-form">
+                    <h2>Kidney Disease Predictor</h2>
+                    <p class="form-desc">Enter patient nephrological data.</p>
+                    
+                    <div class="form-grid">
+                        <div class="input-group"><label>Age</label><input type="number" id="c-age" value="50" min="0" required></div>
+                        <div class="input-group"><label>Blood Pressure</label><input type="number" id="c-bp" value="80" min="0" required></div>
+                        <div class="input-group"><label>Blood Glucose</label><input type="number" id="c-bgr" value="120" min="0" required></div>
+                        <div class="input-group"><label>Blood Urea</label><input type="number" id="c-bu" value="36" min="0" required></div>
+                        <div class="input-group"><label>Serum Creatinine</label><input type="number" step="0.1" id="c-sc" value="1.2" min="0" required></div>
+                        <div class="input-group"><label>Sodium</label><input type="number" id="c-sod" value="135" min="0" required></div>
+                        <div class="input-group"><label>Potassium</label><input type="number" step="0.1" id="c-pot" value="4.5" min="0" required></div>
+                        <div class="input-group"><label>Hemoglobin</label><input type="number" step="0.1" id="c-hemo" value="15.0" min="0" required></div>
+                        <div class="input-group"><label>Packed Cell Vol</label><input type="number" id="c-pcv" value="44" min="0" required></div>
+                        <div class="input-group"><label>WBC Count</label><input type="number" id="c-wbcc" value="8000" min="0" required></div>
+                        <div class="input-group"><label>RBC Count</label><input type="number" step="0.1" id="c-rbcc" value="5.0" min="0" required></div>
+                        
+                        <div class="input-group"><label>Specific Gravity</label><select id="c-sg"><option value="1.005">1.005</option><option value="1.010">1.010</option><option value="1.015">1.015</option><option value="1.020" selected>1.020</option><option value="1.025">1.025</option></select></div>
+                        <div class="input-group"><label>Albumin</label><select id="c-al"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div>
+                        <div class="input-group"><label>Sugar</label><select id="c-su"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div>
+                        <div class="input-group"><label>Red Blood Cells</label><select id="c-rbc"><option value="normal">Normal</option><option value="abnormal">Abnormal</option></select></div>
+                        <div class="input-group"><label>Pus Cell</label><select id="c-pc"><option value="normal">Normal</option><option value="abnormal">Abnormal</option></select></div>
+                        <div class="input-group"><label>Pus Cell Clumps</label><select id="c-pcc"><option value="notpresent">Not Present</option><option value="present">Present</option></select></div>
+                        <div class="input-group"><label>Bacteria</label><select id="c-ba"><option value="notpresent">Not Present</option><option value="present">Present</option></select></div>
+                        <div class="input-group"><label>Hypertension</label><select id="c-htn"><option value="no">No</option><option value="yes">Yes</option></select></div>
+                        <div class="input-group"><label>Diabetes Mellitus</label><select id="c-dm"><option value="no">No</option><option value="yes">Yes</option></select></div>
+                        <div class="input-group"><label>Coronary Artery Dis</label><select id="c-cad"><option value="no">No</option><option value="yes">Yes</option></select></div>
+                        <div class="input-group"><label>Appetite</label><select id="c-appet"><option value="good">Good</option><option value="poor">Poor</option></select></div>
+                        <div class="input-group"><label>Pedal Edema</label><select id="c-pe"><option value="no">No</option><option value="yes">Yes</option></select></div>
+                        <div class="input-group"><label>Anemia</label><select id="c-ane"><option value="no">No</option><option value="yes">Yes</option></select></div>
+                    </div>
+                    <button type="submit" class="submit-btn">Predict Kidney Disease</button>
+                    <div id="chronic-result" class="result-card hidden"></div>
                 </form>
 
             </div>

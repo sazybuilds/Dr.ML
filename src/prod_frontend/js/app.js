@@ -9,6 +9,7 @@ const forms = document.querySelectorAll('.prediction-form');
 // DOM Elements - Forms
 const diabetesForm = document.getElementById('diabetes-form');
 const heartForm = document.getElementById('heart-form');
+const chronicForm = document.getElementById('chronic-form');
 
 // Navigation Logic
 navBtns.forEach(btn => {
@@ -57,8 +58,14 @@ async function handlePrediction(e, disease, inputData, resultElementId) {
         if (!response.ok) throw new Error("API request failed.");
 
         const data = await response.json();
-        const prediction = parseInt(data.prediction);
-        const probability = parseFloat(data.probability) * 100;
+        let prediction = parseInt(data.prediction);
+        let probability = parseFloat(data.probability) * 100;
+
+        // Chronic Kidney Disease has flipped classes (0 = disease, 1 = healthy)
+        if (disease === 'chronic_kidney_disease') {
+            prediction = prediction === 0 ? 1 : 0;
+            probability = 100 - probability;
+        }
 
         // Display results
         resultCard.classList.remove('hidden', 'success', 'danger');
@@ -84,7 +91,11 @@ async function handlePrediction(e, disease, inputData, resultElementId) {
         console.error(error);
     } finally {
         // Restore button state
-        submitBtn.textContent = `Predict ${disease === 'diabetes' ? 'Diabetes' : 'Heart Disease'}`;
+        let diseaseName = 'Heart Disease';
+        if (disease === 'diabetes') diseaseName = 'Diabetes';
+        else if (disease === 'chronic_kidney_disease') diseaseName = 'Kidney Disease';
+        
+        submitBtn.textContent = `Predict ${diseaseName}`;
         submitBtn.disabled = false;
     }
 }
@@ -126,3 +137,36 @@ heartForm.addEventListener('submit', (e) => {
     
     handlePrediction(e, 'heart_disease', inputData, 'heart-result');
 });
+
+chronicForm.addEventListener('submit', (e) => {
+    // Gather inputs
+    const inputData = {
+        age: parseFloat(document.getElementById('c-age').value),
+        bp: parseFloat(document.getElementById('c-bp').value),
+        bgr: parseFloat(document.getElementById('c-bgr').value),
+        bu: parseFloat(document.getElementById('c-bu').value),
+        sc: parseFloat(document.getElementById('c-sc').value),
+        sod: parseFloat(document.getElementById('c-sod').value),
+        pot: parseFloat(document.getElementById('c-pot').value),
+        hemo: parseFloat(document.getElementById('c-hemo').value),
+        pcv: parseFloat(document.getElementById('c-pcv').value),
+        wbcc: parseFloat(document.getElementById('c-wbcc').value),
+        rbcc: parseFloat(document.getElementById('c-rbcc').value),
+        sg: parseFloat(document.getElementById('c-sg').value),
+        al: parseFloat(document.getElementById('c-al').value),
+        su: parseFloat(document.getElementById('c-su').value),
+        rbc: document.getElementById('c-rbc').value,
+        pc: document.getElementById('c-pc').value,
+        pcc: document.getElementById('c-pcc').value,
+        ba: document.getElementById('c-ba').value,
+        htn: document.getElementById('c-htn').value,
+        dm: document.getElementById('c-dm').value,
+        cad: document.getElementById('c-cad').value,
+        appet: document.getElementById('c-appet').value,
+        pe: document.getElementById('c-pe').value,
+        ane: document.getElementById('c-ane').value
+    };
+    
+    handlePrediction(e, 'chronic_kidney_disease', inputData, 'chronic-result');
+});
+
