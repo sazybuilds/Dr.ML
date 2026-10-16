@@ -1,12 +1,14 @@
-# pyrefly: ignore [missing-import]
 from fastapi import APIRouter
 
+#get schemas for input validation
 from src.backend.schemas.prediction_schema import (
     PredictionRequest,
     PredictionResponse,
     HealthResponse
 )
 
+
+#get the predictor function
 from src.backend.services.predictor import predict_disease
 
 
@@ -19,6 +21,7 @@ def health_check():
         "status": "okay",
         "message": "API is healthy and running"
     }
+
 
 
 @router.post("/predict", response_model=PredictionResponse)
